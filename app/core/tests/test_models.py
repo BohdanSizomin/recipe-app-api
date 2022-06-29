@@ -1,5 +1,5 @@
 from django.test import TestCase
-from core.models import User,Tag
+from core.models import User,Tag,Ingredient
 
 def sample_user(email='test@gmail.com',password='testpasswrd'):
     return User.objects.create_user(email,password)
@@ -55,3 +55,11 @@ class ModelTests(TestCase):
             name='Vegan'
         )
         self.assertEqual(str(tag), tag.name)
+
+    def test_ingridient_str(self):
+        """ Test tje ingridient string representation """
+        ingredient = Ingredient.objects.create(
+            user =sample_user(),
+            name='Cucumber'
+        )
+        self.assertEqual(str(ingredient), ingredient.name)
